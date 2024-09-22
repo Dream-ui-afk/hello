@@ -1,5 +1,9 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import { CartProvider } from "@/components/CartContext";
+import Footer from "@/components/Footer";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,9 +25,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ffffff] mb-10`}
       >
-        {children}
+        <CartProvider>
+          <Navbar />
+          {children} {/* นำเข้าทุกหน้าไว้ที่นี่ */}
+        </CartProvider>
+   
+        <Footer />
       </body>
     </html>
   );
